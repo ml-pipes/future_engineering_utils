@@ -11,7 +11,7 @@ entries:
       url: /
     - output: web,pdf
       title: Title
-      url: core.html
+      url: cluster.html
     output: web
     title: fe_utils
   output: web
