@@ -10,4 +10,6 @@ def addition(a:Union[int, float], b:Union[int, float]) -> Union[int, float]:
     A simple addition function. Add `a` to `b`.
     """
 
-    return a + b
+    calc = a + b
+
+    return calc
