@@ -67,7 +67,7 @@ class BayesClusterTrainer():
         on the number of clusters we want to identify
         """
 
-        clusters = generate_clusters(embeddings,
+        clusters = self.generate_clusters(embeddings,
                                      n_neighbors = params['n_neighbors'],
                                      n_components = params['n_components'],
                                      min_cluster_size = params['min_cluster_size'],
@@ -76,10 +76,7 @@ class BayesClusterTrainer():
                                      cluster_selection_method = params['cluster_selection_method'],
                                      random_state = 42)
 
-        cost = score_clusters(clusters, y)
-
-
-        pprint(params)
+        cost = self.score_clusters(clusters, labels)
 
         loss = cost
 
@@ -90,16 +87,40 @@ class BayesClusterTrainer():
         """
         Returns the label count and cost of a given cluster supplied from running hdbscan
         """
-        penalty = (clusters.labels_ == -1).sum() / len(clusters.labels_)
-        pers = clusters.cluster_persistence_.mean(0)
+
         val = clusters.relative_validity_
-        outlier = clusters.outlier_scores_.mean(0)
+
+        #prevent pers from getting NaN value if no clusters exist
+        if len(clusters.cluster_persistence_)==0:
+            pers = 0.
+        else:
+            pers = clusters.cluster_persistence_.mean(0)
+
         prob = clusters.probabilities_.mean(0)
+
+        penalty = (clusters.labels_ == -1).sum() / len(clusters.labels_)
+
+        if len(clusters.outlier_scores_)==0:
+            outlier = 0.0
+        else:
+            outlier = clusters.outlier_scores_.mean(0)
+
 
         #cluster_size = len(np.unique(clusters.labels_))
 
-        score = -1*(val + prob + pers) + (penalty + outlier)
-        score = score/5
+        print(f'val: {val}')
+        print(f'pers: {pers}')
+        print(f'prob: {prob}')
+        print(f'penalty: {penalty}')
+        print(f'outlier: {outlier}')
+
+        val_w = self.cost_fn_params['val_w']
+        prob_w = self.cost_fn_params['prob_w']
+        pers_w = self.cost_fn_params['pers_w']
+        penalty_w = self.cost_fn_params['penalty_w']
+        outlier_w = self.cost_fn_params['outlier_w']
+
+        score = -1*(val_w * val + prob_w * prob + pers_w * pers) + (penalty_w * penalty +  outlier_w * outlier)
 
         fns = [adjusted_rand_score, homogeneity_completeness_v_measure, homogeneity_score, v_measure_score, completeness_score, adjusted_mutual_info_score]
 
@@ -130,7 +151,7 @@ class BayesClusterTrainer():
         print("-"*20)
         print("-"*20)
 
-        best_clusters = generate_clusters(self.embeddings,
+        best_clusters = self.generate_clusters(self.embeddings,
                                          n_neighbors = best_params['n_neighbors'],
                                          n_components = best_params['n_components'],
                                          min_cluster_size = best_params['min_cluster_size'],
@@ -139,7 +160,12 @@ class BayesClusterTrainer():
                                          cluster_selection_method = best_params['cluster_selection_method']
                                          )
 
-        return best_params, best_clusters, trials
+
+        self.best_params = best_params
+        self.best_clusters = best_clusters
+        self.trials = trials
+
+        print(f'Finished training!')
 
     def fit(self):
         print('*' * 10)
