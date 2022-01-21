@@ -1,6 +1,7 @@
 {
   "fe_utils": {
     "Overview": "/",
-    "Title": "cluster.html"
+    "fe_utils.cluster": "cluster.html",
+    "fe_utils.core": "core.html"
   }
 }

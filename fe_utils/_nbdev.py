@@ -2,13 +2,13 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"addition": "00_core.ipynb",
-         "multiply": "00_core.ipynb",
-         "dataloader": "cluster.ipynb",
-         "BayesClusterTrainer": "cluster.ipynb"}
+index = {"dataloader": "00_cluster.ipynb",
+         "BayesClusterTrainer": "00_cluster.ipynb",
+         "addition": "00_core.ipynb",
+         "multiply": "00_core.ipynb"}
 
-modules = ["core.py",
-           "cluster.py"]
+modules = ["cluster.py",
+           "core.py"]
 
 doc_url = "https://ml-pipes.github.io/fe_utils/"
 

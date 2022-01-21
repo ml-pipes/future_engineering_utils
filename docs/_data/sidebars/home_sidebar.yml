@@ -10,8 +10,11 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: Title
+      title: fe_utils.cluster
       url: cluster.html
+    - output: web,pdf
+      title: fe_utils.core
+      url: core.html
     output: web
     title: fe_utils
   output: web
