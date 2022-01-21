@@ -2,7 +2,7 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"dataloader": "00_cluster.ipynb",
+index = {"load_embedding": "00_cluster.ipynb",
          "BayesClusterTrainer": "00_cluster.ipynb",
          "addition": "00_core.ipynb",
          "multiply": "00_core.ipynb"}
