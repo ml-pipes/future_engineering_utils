@@ -1,7 +1,7 @@
-repository: ml-pipes/fe_utils
+repository: ml-pipes/future_engineering_utils
 output: web
-topnav_title: fe_utils
-site_title: fe_utils
+topnav_title: future_engineering_utils
+site_title: future_engineering_utils
 company_name: fraunhofer
 description: A collection of utility modules and functions for FE
 # Set to false to disable KaTeX math
@@ -63,4 +63,4 @@ plugins:
     - jekyll-remote-theme
     
 remote_theme: fastai/nbdev-jekyll-theme
-baseurl: /fe_utils/
+baseurl: /future_engineering_utils/
