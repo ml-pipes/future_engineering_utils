@@ -205,4 +205,5 @@ class BayesClusterTrainer():
         df = pd.DataFrame(self.logs)
         if dataset!=None:
             df['dataset'] = dataset
-        df.to_csv(path, index=False)
+        #df.to_csv(path, index=False)
+        return df
