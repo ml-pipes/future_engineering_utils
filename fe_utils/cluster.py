@@ -76,14 +76,14 @@ class BayesClusterTrainer():
                                      cluster_selection_method = params['cluster_selection_method'],
                                      random_state = 42)
 
-        cost = self.score_clusters(clusters, labels)
+        cost = self.score_clusters(clusters, labels, params)
 
         loss = cost
 
         return {'loss': loss, 'status': STATUS_OK}
 
 
-    def score_clusters(self, clusters, y):
+    def score_clusters(self, clusters, y, params):
         """
         Returns the label count and cost of a given cluster supplied from running hdbscan
         """
@@ -127,7 +127,20 @@ class BayesClusterTrainer():
         print(f"SCORE: {score}")
         for fn in fns:
             print(f"{fn.__name__} : {fn(clusters.labels_, y)}")
+            self.run[f'{fn.__name__}'] = fn(clusters.labels_, y)
         print("-"*20)
+
+        self.run['relative_validity'] = val
+        self.run['probability'] = prob
+        self.run['persistence'] = pers
+        self.run['penalty'] = penalty
+        self.run['outlier'] = outlier
+        self.run['score'] = score
+
+        self.run = {**self.run, **self.cost_fn_params, **params}
+
+        self.logs.append(self.run)
+        self.run.clear
 
         return score
 
@@ -167,7 +180,11 @@ class BayesClusterTrainer():
 
         print(f'Finished training!')
 
-    def fit(self):
-        print('*' * 10)
-        print('TRAINING NOW!')
-        print('*' * 10)
+    def save_logs_to_csv(self, path, dataset=None):
+        """
+        save logs to a csv file. Provide the path, optionally provide a dataset name. Creates new column.
+        """
+        df = pd.DataFrame(self.logs)
+        if dataset!=None:
+            df['dataset'] = dataset
+        df.to_csv(path, index=False)

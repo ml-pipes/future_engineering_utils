@@ -157,7 +157,7 @@ on the number of clusters we want to identify</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.score_clusters" class="doc_header"><code>BayesClusterTrainer.score_clusters</code><a href="__main__.py#L71" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.score_clusters</code>(<strong><code>clusters</code></strong>, <strong><code>y</code></strong>)</p>
+<h4 id="BayesClusterTrainer.score_clusters" class="doc_header"><code>BayesClusterTrainer.score_clusters</code><a href="__main__.py#L71" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.score_clusters</code>(<strong><code>clusters</code></strong>, <strong><code>y</code></strong>, <strong><code>params</code></strong>)</p>
 </blockquote>
 <p>Returns the label count and cost of a given cluster supplied from running hdbscan</p>
 
@@ -182,9 +182,34 @@ on the number of clusters we want to identify</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.train" class="doc_header"><code>BayesClusterTrainer.train</code><a href="__main__.py#L120" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.train</code>(<strong><code>max_evals</code></strong>=<em><code>100</code></em>, <strong><code>algo</code></strong>=<em><code>suggest</code></em>)</p>
+<h4 id="BayesClusterTrainer.train" class="doc_header"><code>BayesClusterTrainer.train</code><a href="__main__.py#L133" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.train</code>(<strong><code>max_evals</code></strong>=<em><code>100</code></em>, <strong><code>algo</code></strong>=<em><code>suggest</code></em>)</p>
 </blockquote>
 <p>Perform bayesian search on hyperopt hyperparameter space to minimize objective function</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="BayesClusterTrainer.save_logs_to_csv" class="doc_header"><code>BayesClusterTrainer.save_logs_to_csv</code><a href="__main__.py#L168" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.save_logs_to_csv</code>(<strong><code>path</code></strong>, <strong><code>dataset</code></strong>=<em><code>None</code></em>)</p>
+</blockquote>
+<p>save logs to a csv file. Provide the path, optionally provide a dataset name. Creates new column.</p>
 
 </div>
 
@@ -279,6 +304,9 @@ on the number of clusters we want to identify</p>
 
 <span class="n">trainer</span> <span class="o">=</span> <span class="n">BayesClusterTrainer</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">cost_fn_param</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">max_evals</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#optional save logs to csv</span>
+<span class="c1"># trainer.save_logs_to_csv(&#39;test.csv&#39;, dataset=&#39;news_20&#39;)</span>
 </pre></div>
 
     </div>
@@ -291,22 +319,22 @@ on the number of clusters we want to identify</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>val: 0.0                                                                                                            
-pers: 0.0                                                                                                           
-prob: 0.0                                                                                                           
-penalty: 1.0                                                                                                        
-outlier: 0.0030636033901061664                                                                                      
-SCORE: 0.25045954050851593                                                                                          
-adjusted_rand_score : 0.0                                                                                           
-homogeneity_completeness_v_measure : (1.0, 0.0, 0.0)                                                                
-homogeneity_score : 1.0                                                                                             
-v_measure_score : 0.0                                                                                               
-completeness_score : 0.0                                                                                            
-adjusted_mutual_info_score : 0.0                                                                                    
---------------------                                                                                                
-100%|██████████████████████████████████████████████| 1/1 [00:06&lt;00:00,  6.56s/trial, best loss: 0.25045954050851593]
+<pre>val: 0.0                                                                        
+pers: 0.0                                                                       
+prob: 0.0                                                                       
+penalty: 1.0                                                                    
+outlier: 0.06680222157746227                                                    
+SCORE: 0.2600203332366193                                                       
+adjusted_rand_score : 0.0                                                       
+homogeneity_completeness_v_measure : (1.0, 0.0, 0.0)                            
+homogeneity_score : 1.0                                                         
+v_measure_score : 0.0                                                           
+completeness_score : 0.0                                                        
+adjusted_mutual_info_score : 0.0                                                
+--------------------                                                            
+100%|███████████| 1/1 [00:06&lt;00:00,  6.07s/trial, best loss: 0.2600203332366193]
 best:
-{&#39;cluster_selection_epsilon&#39;: 0.3419191919191919, &#39;cluster_selection_method&#39;: &#39;leaf&#39;, &#39;metric&#39;: &#39;euclidean&#39;, &#39;min_cluster_size&#39;: 752, &#39;n_components&#39;: 44, &#39;n_neighbors&#39;: 29}
+{&#39;cluster_selection_epsilon&#39;: 0.4707070707070707, &#39;cluster_selection_method&#39;: &#39;eom&#39;, &#39;metric&#39;: &#39;manhattan&#39;, &#39;min_cluster_size&#39;: 53, &#39;n_components&#39;: 25, &#39;n_neighbors&#39;: 58}
 --------------------
 --------------------
 Finished training!
