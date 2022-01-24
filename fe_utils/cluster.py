@@ -124,13 +124,14 @@ class BayesClusterTrainer():
             outlier = clusters.outlier_scores_.mean(0)
 
 
-        #cluster_size = len(np.unique(clusters.labels_))
+        cluster_size = len(np.unique(clusters.labels_))
 
         print(f'val: {val}')
         print(f'pers: {pers}')
         print(f'prob: {prob}')
         print(f'penalty: {penalty}')
         print(f'outlier: {outlier}')
+        print(f'cluster size: {cluster_size}')
 
         val_w = self.cost_fn_params['val_w']
         prob_w = self.cost_fn_params['prob_w']
@@ -154,6 +155,7 @@ class BayesClusterTrainer():
         self.run['penalty'] = penalty
         self.run['outlier'] = outlier
         self.run['score'] = score
+        self.run['cluster_size'] = cluster_size
 
         self.run = {**self.run, **self.cost_fn_params, **params}
 

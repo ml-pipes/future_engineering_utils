@@ -189,7 +189,7 @@ on the number of clusters we want to identify</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.train" class="doc_header"><code>BayesClusterTrainer.train</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L166" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.train</code>(<strong><code>max_evals</code></strong>=<em><code>100</code></em>, <strong><code>algo</code></strong>=<em><code>suggest</code></em>)</p>
+<h4 id="BayesClusterTrainer.train" class="doc_header"><code>BayesClusterTrainer.train</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L168" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.train</code>(<strong><code>max_evals</code></strong>=<em><code>100</code></em>, <strong><code>algo</code></strong>=<em><code>suggest</code></em>)</p>
 </blockquote>
 <p>Perform bayesian search on hyperopt hyperparameter space to minimize objective function</p>
 
@@ -214,7 +214,7 @@ on the number of clusters we want to identify</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.save_logs_to_csv" class="doc_header"><code>BayesClusterTrainer.save_logs_to_csv</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L201" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.save_logs_to_csv</code>(<strong><code>path</code></strong>, <strong><code>dataset</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="BayesClusterTrainer.save_logs_to_csv" class="doc_header"><code>BayesClusterTrainer.save_logs_to_csv</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L203" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.save_logs_to_csv</code>(<strong><code>path</code></strong>, <strong><code>dataset</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>save logs to a csv file. Provide the path, optionally provide a dataset name. Creates new column.</p>
 
@@ -313,7 +313,7 @@ on the number of clusters we want to identify</p>
 <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">max_evals</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1">#optional save logs to csv</span>
-<span class="c1"># trainer.save_logs_to_csv(&#39;test.csv&#39;, dataset=&#39;news_20&#39;)</span>
+<span class="c1"># df = trainer.save_logs_to_csv(&#39;test.csv&#39;, dataset=&#39;news_20&#39;)</span>
 </pre></div>
 
     </div>
