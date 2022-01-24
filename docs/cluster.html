@@ -33,6 +33,13 @@ nb_path: "00_cluster.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -40,7 +47,7 @@ nb_path: "00_cluster.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_embedding" class="doc_header"><code>load_embedding</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L7" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_embedding</code>(<strong><code>path</code></strong>)</p>
+<h4 id="load_embedding" class="doc_header"><code>load_embedding</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L28" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_embedding</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 <p>dataloader for saved embeddings. Load from numpy file</p>
 
@@ -72,7 +79,7 @@ nb_path: "00_cluster.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="BayesClusterTrainer" class="doc_header"><code>class</code> <code>BayesClusterTrainer</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L20" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BayesClusterTrainer</code>(<strong><code>space</code></strong>, <strong><code>cost_fn_params</code></strong>, <strong><code>embeddings</code></strong>, <strong><code>labels</code></strong>, <strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+<h2 id="BayesClusterTrainer" class="doc_header"><code>class</code> <code>BayesClusterTrainer</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L38" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BayesClusterTrainer</code>(<strong><code>space</code></strong>, <strong><code>cost_fn_params</code></strong>, <strong><code>embeddings</code></strong>, <strong><code>labels</code></strong>, <strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>A trainer for cluster optimization runs
 Inputs:
@@ -106,7 +113,7 @@ Inputs:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.generate_clusters" class="doc_header"><code>BayesClusterTrainer.generate_clusters</code><a href="__main__.py#L24" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.generate_clusters</code>(<strong><code>embeddings</code></strong>, <strong><code>min_cluster_size</code></strong>, <strong><code>cluster_selection_epsilon</code></strong>, <strong><code>cluster_selection_method</code></strong>, <strong><code>metric</code></strong>, <strong><code>n_neighbors</code></strong>, <strong><code>n_components</code></strong>, <strong><code>random_state</code></strong>=<em><code>42</code></em>)</p>
+<h4 id="BayesClusterTrainer.generate_clusters" class="doc_header"><code>BayesClusterTrainer.generate_clusters</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L57" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.generate_clusters</code>(<strong><code>embeddings</code></strong>, <strong><code>min_cluster_size</code></strong>, <strong><code>cluster_selection_epsilon</code></strong>, <strong><code>cluster_selection_method</code></strong>, <strong><code>metric</code></strong>, <strong><code>n_neighbors</code></strong>, <strong><code>n_components</code></strong>, <strong><code>random_state</code></strong>=<em><code>42</code></em>)</p>
 </blockquote>
 <p>Generate HDBSCAN cluster object after reducing embedding dimensionality with UMAP</p>
 
@@ -131,7 +138,7 @@ Inputs:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.objective" class="doc_header"><code>BayesClusterTrainer.objective</code><a href="__main__.py#L49" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.objective</code>(<strong><code>params</code></strong>, <strong><code>embeddings</code></strong>, <strong><code>labels</code></strong>)</p>
+<h4 id="BayesClusterTrainer.objective" class="doc_header"><code>BayesClusterTrainer.objective</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.objective</code>(<strong><code>params</code></strong>, <strong><code>embeddings</code></strong>, <strong><code>labels</code></strong>)</p>
 </blockquote>
 <p>Objective function for hyperopt to minimize, which incorporates constraints
 on the number of clusters we want to identify</p>
@@ -157,7 +164,7 @@ on the number of clusters we want to identify</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.score_clusters" class="doc_header"><code>BayesClusterTrainer.score_clusters</code><a href="__main__.py#L71" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.score_clusters</code>(<strong><code>clusters</code></strong>, <strong><code>y</code></strong>, <strong><code>params</code></strong>)</p>
+<h4 id="BayesClusterTrainer.score_clusters" class="doc_header"><code>BayesClusterTrainer.score_clusters</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L104" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.score_clusters</code>(<strong><code>clusters</code></strong>, <strong><code>y</code></strong>, <strong><code>params</code></strong>)</p>
 </blockquote>
 <p>Returns the label count and cost of a given cluster supplied from running hdbscan</p>
 
@@ -182,7 +189,7 @@ on the number of clusters we want to identify</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.train" class="doc_header"><code>BayesClusterTrainer.train</code><a href="__main__.py#L133" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.train</code>(<strong><code>max_evals</code></strong>=<em><code>100</code></em>, <strong><code>algo</code></strong>=<em><code>suggest</code></em>)</p>
+<h4 id="BayesClusterTrainer.train" class="doc_header"><code>BayesClusterTrainer.train</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L166" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.train</code>(<strong><code>max_evals</code></strong>=<em><code>100</code></em>, <strong><code>algo</code></strong>=<em><code>suggest</code></em>)</p>
 </blockquote>
 <p>Perform bayesian search on hyperopt hyperparameter space to minimize objective function</p>
 
@@ -207,7 +214,7 @@ on the number of clusters we want to identify</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.save_logs_to_csv" class="doc_header"><code>BayesClusterTrainer.save_logs_to_csv</code><a href="__main__.py#L168" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.save_logs_to_csv</code>(<strong><code>path</code></strong>, <strong><code>dataset</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="BayesClusterTrainer.save_logs_to_csv" class="doc_header"><code>BayesClusterTrainer.save_logs_to_csv</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L201" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.save_logs_to_csv</code>(<strong><code>path</code></strong>, <strong><code>dataset</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>save logs to a csv file. Provide the path, optionally provide a dataset name. Creates new column.</p>
 

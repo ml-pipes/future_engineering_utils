@@ -3,6 +3,27 @@
 __all__ = ['load_embedding', 'BayesClusterTrainer']
 
 # Cell
+from functools import partial
+import hdbscan
+from hyperopt import hp
+from hyperopt import fmin, tpe, space_eval
+from hyperopt import Trials
+from hyperopt import STATUS_OK
+import numpy as np
+import os
+import pandas as pd
+from sklearn.preprocessing import normalize
+from sklearn.model_selection import RandomizedSearchCV
+from sklearn.metrics import make_scorer
+from sklearn.metrics.cluster import adjusted_rand_score
+from sklearn.metrics.cluster import homogeneity_completeness_v_measure
+from sklearn.metrics.cluster import homogeneity_score, v_measure_score, silhouette_score
+from sklearn.metrics.cluster import completeness_score, adjusted_mutual_info_score
+import time
+import umap
+
+
+# Cell
 
 def load_embedding(path):
     """
@@ -14,9 +35,6 @@ def load_embedding(path):
 
 
 # Cell
-
-from hyperopt import fmin, tpe, space_eval
-
 class BayesClusterTrainer():
     """
     A trainer for cluster optimization runs

@@ -3,6 +3,10 @@
 __all__ = ['addition', 'multiply']
 
 # Cell
+from fastcore.all import *
+from typing import Union
+
+# Cell
 from typing import Union
 
 def addition(a:Union[int, float], b:Union[int, float]) -> Union[int, float]:
