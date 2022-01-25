@@ -297,7 +297,7 @@ on the number of clusters we want to identify</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">space</span> <span class="o">=</span> <span class="p">{</span>
-              <span class="s1">&#39;min_cluster_size&#39;</span><span class="p">:</span><span class="n">hp</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="s1">&#39;min_cluster_size&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)),</span> 
+              <span class="s1">&#39;min_cluster_size&#39;</span><span class="p">:</span><span class="n">hp</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="s1">&#39;min_cluster_size&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)),</span> 
               <span class="s1">&#39;cluster_selection_epsilon&#39;</span><span class="p">:</span> <span class="n">hp</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="s1">&#39;cluster_selection_epsilon&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span>
               <span class="s1">&#39;cluster_selection_method&#39;</span> <span class="p">:</span> <span class="n">hp</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="s1">&#39;cluster_selection_method&#39;</span><span class="p">,[</span><span class="s1">&#39;eom&#39;</span><span class="p">,</span><span class="s1">&#39;leaf&#39;</span><span class="p">]),</span>
               <span class="s1">&#39;metric&#39;</span> <span class="p">:</span> <span class="n">hp</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="s1">&#39;metric&#39;</span><span class="p">,[</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span><span class="s1">&#39;manhattan&#39;</span><span class="p">]),</span>
@@ -310,7 +310,7 @@ on the number of clusters we want to identify</p>
 
 
 <span class="n">trainer</span> <span class="o">=</span> <span class="n">BayesClusterTrainer</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">cost_fn_param</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
-<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">max_evals</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">max_evals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="c1">#optional save logs to csv</span>
 <span class="c1"># df = trainer.save_logs_to_csv(&#39;test.csv&#39;, dataset=&#39;news_20&#39;)</span>
@@ -330,8 +330,9 @@ on the number of clusters we want to identify</p>
 pers: 0.0                                                                       
 prob: 0.0                                                                       
 penalty: 1.0                                                                    
-outlier: 0.06680222157746227                                                    
-SCORE: 0.2600203332366193                                                       
+outlier: 0.0058364412976124914                                                  
+cluster size: 1                                                                 
+SCORE: 0.25087546619464185                                                      
 adjusted_rand_score : 0.0                                                       
 homogeneity_completeness_v_measure : (1.0, 0.0, 0.0)                            
 homogeneity_score : 1.0                                                         
@@ -339,9 +340,37 @@ v_measure_score : 0.0
 completeness_score : 0.0                                                        
 adjusted_mutual_info_score : 0.0                                                
 --------------------                                                            
-100%|███████████| 1/1 [00:06&lt;00:00,  6.07s/trial, best loss: 0.2600203332366193]
+val: 0.0                                                                        
+pers: 0.0                                                                       
+prob: 0.0                                                                       
+penalty: 1.0                                                                    
+outlier: 0.001111938488931903                                                   
+cluster size: 1                                                                 
+SCORE: 0.2501667907733398                                                       
+adjusted_rand_score : 0.0                                                       
+homogeneity_completeness_v_measure : (1.0, 0.0, 0.0)                            
+homogeneity_score : 1.0                                                         
+v_measure_score : 0.0                                                           
+completeness_score : 0.0                                                        
+adjusted_mutual_info_score : 0.0                                                
+--------------------                                                            
+val: 0.0                                                                        
+pers: 0.0                                                                       
+prob: 0.0                                                                       
+penalty: 1.0                                                                    
+outlier: 0.02327770886581927                                                    
+cluster size: 1                                                                 
+SCORE: 0.2534916563298729                                                       
+adjusted_rand_score : 0.0                                                       
+homogeneity_completeness_v_measure : (1.0, 0.0, 0.0)                            
+homogeneity_score : 1.0                                                         
+v_measure_score : 0.0                                                           
+completeness_score : 0.0                                                        
+adjusted_mutual_info_score : 0.0                                                
+--------------------                                                            
+100%|███████████| 3/3 [00:18&lt;00:00,  6.10s/trial, best loss: 0.2501667907733398]
 best:
-{&#39;cluster_selection_epsilon&#39;: 0.4707070707070707, &#39;cluster_selection_method&#39;: &#39;eom&#39;, &#39;metric&#39;: &#39;manhattan&#39;, &#39;min_cluster_size&#39;: 53, &#39;n_components&#39;: 25, &#39;n_neighbors&#39;: 58}
+{&#39;cluster_selection_epsilon&#39;: 0.4621212121212121, &#39;cluster_selection_method&#39;: &#39;leaf&#39;, &#39;metric&#39;: &#39;euclidean&#39;, &#39;min_cluster_size&#39;: 885, &#39;n_components&#39;: 23, &#39;n_neighbors&#39;: 48}
 --------------------
 --------------------
 Finished training!

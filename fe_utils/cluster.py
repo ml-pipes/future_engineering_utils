@@ -204,7 +204,18 @@ class BayesClusterTrainer():
         """
         save logs to a csv file. Provide the path, optionally provide a dataset name. Creates new column.
         """
-        df = pd.DataFrame(self.logs)
+        cols = ['adjusted_rand_score', 'homogeneity_completeness_v_measure',
+       'homogeneity_score', 'v_measure_score', 'completeness_score',
+       'adjusted_mutual_info_score', 'relative_validity', 'probability',
+       'persistence', 'penalty', 'outlier', 'score', 'cluster_size', 'val_w',
+       'prob_w', 'pers_w', 'penalty_w', 'outlier_w',
+       'cluster_selection_epsilon', 'cluster_selection_method', 'metric',
+       'min_cluster_size', 'n_components', 'n_neighbors']
+
+        df = pd.DataFrame(columns=cols)
+
+        df = df.append(self.logs)
+
         if dataset!=None:
             df['dataset'] = dataset
         #df.to_csv(path, index=False)
