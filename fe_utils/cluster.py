@@ -43,12 +43,14 @@ class BayesClusterTrainer():
 
     """
 
-    def __init__(self, space, cost_fn_params, embeddings, labels, *args, **kwargs):
+    def __init__(self, space, cost_fn_params, embeddings, labels, optimize='default' , *args, **kwargs):
         self.space = space
         self.cost_fn_params = cost_fn_params
 
         self.embeddings = embeddings
         self.labels = labels
+
+        self.optimize = optimize
 
         self.logs = []
 
@@ -126,43 +128,63 @@ class BayesClusterTrainer():
 
         cluster_size = len(np.unique(clusters.labels_))
 
-        print(f'val: {val}')
-        print(f'pers: {pers}')
-        print(f'prob: {prob}')
-        print(f'penalty: {penalty}')
-        print(f'outlier: {outlier}')
-        print(f'cluster size: {cluster_size}')
-
-        val_w = self.cost_fn_params['val_w']
-        prob_w = self.cost_fn_params['prob_w']
-        pers_w = self.cost_fn_params['pers_w']
-        penalty_w = self.cost_fn_params['penalty_w']
-        outlier_w = self.cost_fn_params['outlier_w']
-
-        score = -1*(val_w * val + prob_w * prob + pers_w * pers) + (penalty_w * penalty +  outlier_w * outlier)
-
-        fns = [adjusted_rand_score, homogeneity_completeness_v_measure, homogeneity_score, v_measure_score, completeness_score, adjusted_mutual_info_score]
-
-        print(f"SCORE: {score}")
-        for fn in fns:
-            print(f"{fn.__name__} : {fn(clusters.labels_, y)}")
-            self.run[f'{fn.__name__}'] = fn(clusters.labels_, y)
-        print("-"*20)
 
         self.run['relative_validity'] = val
         self.run['probability'] = prob
         self.run['persistence'] = pers
         self.run['penalty'] = penalty
         self.run['outlier'] = outlier
-        self.run['score'] = score
         self.run['cluster_size'] = cluster_size
 
-        self.run = {**self.run, **self.cost_fn_params, **params}
+        fns = [adjusted_rand_score, homogeneity_completeness_v_measure, homogeneity_score, v_measure_score, completeness_score, adjusted_mutual_info_score]
 
-        self.logs.append(self.run)
-        self.run.clear
+        for fn in fns:
+            print(f"{fn.__name__} : {fn(clusters.labels_, y)}")
+            self.run[f'{fn.__name__}'] = fn(clusters.labels_, y)
+        print("-"*20)
 
-        return score
+
+        if self.optimize == 'rand_score':
+
+            score = -1. * adjusted_rand_score(clusters.labels_, y)
+            self.run['score'] = score
+
+            self.run = {**self.run, **params}
+
+            self.logs.append(self.run.copy())
+            self.run.clear()
+
+            print(f"SCORE: {score}")
+
+            return score
+
+        elif self.optimize == 'default':
+
+            print(f'val: {val}')
+            print(f'pers: {pers}')
+            print(f'prob: {prob}')
+            print(f'penalty: {penalty}')
+            print(f'outlier: {outlier}')
+            print(f'cluster size: {cluster_size}')
+
+            val_w = self.cost_fn_params['val_w']
+            prob_w = self.cost_fn_params['prob_w']
+            pers_w = self.cost_fn_params['pers_w']
+            penalty_w = self.cost_fn_params['penalty_w']
+            outlier_w = self.cost_fn_params['outlier_w']
+
+            score = -1*(val_w * val + prob_w * prob + pers_w * pers) + (penalty_w * penalty +  outlier_w * outlier)
+
+            self.run['score'] = score
+
+            self.run = {**self.run, **self.cost_fn_params, **params}
+
+            self.logs.append(self.run.copy())
+            self.run.clear()
+
+            print(f"SCORE: {score}")
+
+            return score
 
 
     def train(self, max_evals=100, algo=tpe.suggest):
@@ -204,13 +226,18 @@ class BayesClusterTrainer():
         """
         save logs to a csv file. Provide the path, optionally provide a dataset name. Creates new column.
         """
-        cols = ['adjusted_rand_score', 'homogeneity_completeness_v_measure',
-       'homogeneity_score', 'v_measure_score', 'completeness_score',
-       'adjusted_mutual_info_score', 'relative_validity', 'probability',
-       'persistence', 'penalty', 'outlier', 'score', 'cluster_size', 'val_w',
-       'prob_w', 'pers_w', 'penalty_w', 'outlier_w',
-       'cluster_selection_epsilon', 'cluster_selection_method', 'metric',
-       'min_cluster_size', 'n_components', 'n_neighbors']
+        if self.optimize == 'default':
+            cols = ['adjusted_rand_score', 'homogeneity_completeness_v_measure',
+           'homogeneity_score', 'v_measure_score', 'completeness_score',
+           'adjusted_mutual_info_score', 'relative_validity', 'probability',
+           'persistence', 'penalty', 'outlier', 'score', 'cluster_size', 'val_w',
+           'prob_w', 'pers_w', 'penalty_w', 'outlier_w',
+           'cluster_selection_epsilon', 'cluster_selection_method', 'metric',
+           'min_cluster_size', 'n_components', 'n_neighbors']
+        elif self.optimize == 'rand_score':
+            cols = ['relative_validity', 'probability', 'persistence', 'penalty', 'outlier', 'cluster_size',
+                    'adjusted_rand_score', 'homogeneity_completeness_v_measure', 'homogeneity_score', 'v_measure_score',
+                    'completeness_score', 'adjusted_mutual_info_score', 'score']
 
         df = pd.DataFrame(columns=cols)
 

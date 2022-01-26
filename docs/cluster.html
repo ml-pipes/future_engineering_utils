@@ -79,7 +79,7 @@ nb_path: "00_cluster.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="BayesClusterTrainer" class="doc_header"><code>class</code> <code>BayesClusterTrainer</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L38" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BayesClusterTrainer</code>(<strong><code>space</code></strong>, <strong><code>cost_fn_params</code></strong>, <strong><code>embeddings</code></strong>, <strong><code>labels</code></strong>, <strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+<h2 id="BayesClusterTrainer" class="doc_header"><code>class</code> <code>BayesClusterTrainer</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L38" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BayesClusterTrainer</code>(<strong><code>space</code></strong>, <strong><code>cost_fn_params</code></strong>, <strong><code>embeddings</code></strong>, <strong><code>labels</code></strong>, <strong><code>optimize</code></strong>=<em><code>'default'</code></em>, <strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>A trainer for cluster optimization runs
 Inputs:
@@ -113,7 +113,7 @@ Inputs:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.generate_clusters" class="doc_header"><code>BayesClusterTrainer.generate_clusters</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L57" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.generate_clusters</code>(<strong><code>embeddings</code></strong>, <strong><code>min_cluster_size</code></strong>, <strong><code>cluster_selection_epsilon</code></strong>, <strong><code>cluster_selection_method</code></strong>, <strong><code>metric</code></strong>, <strong><code>n_neighbors</code></strong>, <strong><code>n_components</code></strong>, <strong><code>random_state</code></strong>=<em><code>42</code></em>)</p>
+<h4 id="BayesClusterTrainer.generate_clusters" class="doc_header"><code>BayesClusterTrainer.generate_clusters</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L59" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.generate_clusters</code>(<strong><code>embeddings</code></strong>, <strong><code>min_cluster_size</code></strong>, <strong><code>cluster_selection_epsilon</code></strong>, <strong><code>cluster_selection_method</code></strong>, <strong><code>metric</code></strong>, <strong><code>n_neighbors</code></strong>, <strong><code>n_components</code></strong>, <strong><code>random_state</code></strong>=<em><code>42</code></em>)</p>
 </blockquote>
 <p>Generate HDBSCAN cluster object after reducing embedding dimensionality with UMAP</p>
 
@@ -138,7 +138,7 @@ Inputs:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.objective" class="doc_header"><code>BayesClusterTrainer.objective</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.objective</code>(<strong><code>params</code></strong>, <strong><code>embeddings</code></strong>, <strong><code>labels</code></strong>)</p>
+<h4 id="BayesClusterTrainer.objective" class="doc_header"><code>BayesClusterTrainer.objective</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L84" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.objective</code>(<strong><code>params</code></strong>, <strong><code>embeddings</code></strong>, <strong><code>labels</code></strong>)</p>
 </blockquote>
 <p>Objective function for hyperopt to minimize, which incorporates constraints
 on the number of clusters we want to identify</p>
@@ -164,7 +164,7 @@ on the number of clusters we want to identify</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.score_clusters" class="doc_header"><code>BayesClusterTrainer.score_clusters</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L104" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.score_clusters</code>(<strong><code>clusters</code></strong>, <strong><code>y</code></strong>, <strong><code>params</code></strong>)</p>
+<h4 id="BayesClusterTrainer.score_clusters" class="doc_header"><code>BayesClusterTrainer.score_clusters</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L106" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.score_clusters</code>(<strong><code>clusters</code></strong>, <strong><code>y</code></strong>, <strong><code>params</code></strong>)</p>
 </blockquote>
 <p>Returns the label count and cost of a given cluster supplied from running hdbscan</p>
 
@@ -189,7 +189,7 @@ on the number of clusters we want to identify</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.train" class="doc_header"><code>BayesClusterTrainer.train</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L168" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.train</code>(<strong><code>max_evals</code></strong>=<em><code>100</code></em>, <strong><code>algo</code></strong>=<em><code>suggest</code></em>)</p>
+<h4 id="BayesClusterTrainer.train" class="doc_header"><code>BayesClusterTrainer.train</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L190" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.train</code>(<strong><code>max_evals</code></strong>=<em><code>100</code></em>, <strong><code>algo</code></strong>=<em><code>suggest</code></em>)</p>
 </blockquote>
 <p>Perform bayesian search on hyperopt hyperparameter space to minimize objective function</p>
 
@@ -214,7 +214,7 @@ on the number of clusters we want to identify</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BayesClusterTrainer.save_logs_to_csv" class="doc_header"><code>BayesClusterTrainer.save_logs_to_csv</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L203" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.save_logs_to_csv</code>(<strong><code>path</code></strong>, <strong><code>dataset</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="BayesClusterTrainer.save_logs_to_csv" class="doc_header"><code>BayesClusterTrainer.save_logs_to_csv</code><a href="https://github.com/ml-pipes/fe_utils/tree/master/fe_utils/cluster.py#L225" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BayesClusterTrainer.save_logs_to_csv</code>(<strong><code>path</code></strong>, <strong><code>dataset</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>save logs to a csv file. Provide the path, optionally provide a dataset name. Creates new column.</p>
 
@@ -306,10 +306,11 @@ on the number of clusters we want to identify</p>
         <span class="p">}</span>
 
 
-<span class="n">cost_fn_param</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;val_w&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span> <span class="s1">&#39;prob_w&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;pers_w&#39;</span><span class="p">:</span> <span class="mf">0.2</span> <span class="p">,</span> <span class="s1">&#39;penalty_w&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;outlier_w&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">}</span>
+<span class="c1">#cost_fn_param = {&#39;val_w&#39;: 0.15, &#39;prob_w&#39;: 0.25, &#39;pers_w&#39;: 0.2 , &#39;penalty_w&#39;: 0.25, &#39;outlier_w&#39;: 0.15}</span>
 
 
-<span class="n">trainer</span> <span class="o">=</span> <span class="n">BayesClusterTrainer</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">cost_fn_param</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">BayesClusterTrainer</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="p">{},</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">optimize</span><span class="o">=</span><span class="s1">&#39;rand_score&#39;</span><span class="p">)</span>
 <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">max_evals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="c1">#optional save logs to csv</span>
@@ -326,13 +327,14 @@ on the number of clusters we want to identify</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>val: 0.0                                                                        
-pers: 0.0                                                                       
-prob: 0.0                                                                       
-penalty: 1.0                                                                    
-outlier: 0.0058364412976124914                                                  
-cluster size: 1                                                                 
-SCORE: 0.25087546619464185                                                      
+<pre>adjusted_rand_score : 0.0                                                       
+homogeneity_completeness_v_measure : (1.0, 0.0, 0.0)                            
+homogeneity_score : 1.0                                                         
+v_measure_score : 0.0                                                           
+completeness_score : 0.0                                                        
+adjusted_mutual_info_score : 0.0                                                
+--------------------                                                            
+SCORE: -0.0                                                                     
 adjusted_rand_score : 0.0                                                       
 homogeneity_completeness_v_measure : (1.0, 0.0, 0.0)                            
 homogeneity_score : 1.0                                                         
@@ -340,13 +342,7 @@ v_measure_score : 0.0
 completeness_score : 0.0                                                        
 adjusted_mutual_info_score : 0.0                                                
 --------------------                                                            
-val: 0.0                                                                        
-pers: 0.0                                                                       
-prob: 0.0                                                                       
-penalty: 1.0                                                                    
-outlier: 0.001111938488931903                                                   
-cluster size: 1                                                                 
-SCORE: 0.2501667907733398                                                       
+SCORE: -0.0                                                                     
 adjusted_rand_score : 0.0                                                       
 homogeneity_completeness_v_measure : (1.0, 0.0, 0.0)                            
 homogeneity_score : 1.0                                                         
@@ -354,23 +350,10 @@ v_measure_score : 0.0
 completeness_score : 0.0                                                        
 adjusted_mutual_info_score : 0.0                                                
 --------------------                                                            
-val: 0.0                                                                        
-pers: 0.0                                                                       
-prob: 0.0                                                                       
-penalty: 1.0                                                                    
-outlier: 0.02327770886581927                                                    
-cluster size: 1                                                                 
-SCORE: 0.2534916563298729                                                       
-adjusted_rand_score : 0.0                                                       
-homogeneity_completeness_v_measure : (1.0, 0.0, 0.0)                            
-homogeneity_score : 1.0                                                         
-v_measure_score : 0.0                                                           
-completeness_score : 0.0                                                        
-adjusted_mutual_info_score : 0.0                                                
---------------------                                                            
-100%|███████████| 3/3 [00:18&lt;00:00,  6.10s/trial, best loss: 0.2501667907733398]
+SCORE: -0.0                                                                     
+100%|█████████████████████████| 3/3 [00:18&lt;00:00,  6.24s/trial, best loss: -0.0]
 best:
-{&#39;cluster_selection_epsilon&#39;: 0.4621212121212121, &#39;cluster_selection_method&#39;: &#39;leaf&#39;, &#39;metric&#39;: &#39;euclidean&#39;, &#39;min_cluster_size&#39;: 885, &#39;n_components&#39;: 23, &#39;n_neighbors&#39;: 48}
+{&#39;cluster_selection_epsilon&#39;: 0.6424242424242425, &#39;cluster_selection_method&#39;: &#39;eom&#39;, &#39;metric&#39;: &#39;euclidean&#39;, &#39;min_cluster_size&#39;: 963, &#39;n_components&#39;: 27, &#39;n_neighbors&#39;: 77}
 --------------------
 --------------------
 Finished training!
