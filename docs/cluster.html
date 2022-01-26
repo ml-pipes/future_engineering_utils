@@ -305,8 +305,8 @@ on the number of clusters we want to identify</p>
               <span class="s1">&#39;n_components&#39;</span><span class="p">:</span> <span class="n">hp</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="s1">&#39;n_components&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">45</span><span class="p">))</span>
         <span class="p">}</span>
 
-
-<span class="c1">#cost_fn_param = {&#39;val_w&#39;: 0.15, &#39;prob_w&#39;: 0.25, &#39;pers_w&#39;: 0.2 , &#39;penalty_w&#39;: 0.25, &#39;outlier_w&#39;: 0.15}</span>
+<span class="c1">#optional</span>
+<span class="n">cost_fn_param</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;val_w&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span> <span class="s1">&#39;prob_w&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;pers_w&#39;</span><span class="p">:</span> <span class="mf">0.2</span> <span class="p">,</span> <span class="s1">&#39;penalty_w&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;outlier_w&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">}</span>
 
 
 
@@ -351,9 +351,9 @@ completeness_score : 0.0
 adjusted_mutual_info_score : 0.0                                                
 --------------------                                                            
 SCORE: -0.0                                                                     
-100%|█████████████████████████| 3/3 [00:18&lt;00:00,  6.24s/trial, best loss: -0.0]
+100%|█████████████████████████| 3/3 [00:14&lt;00:00,  4.92s/trial, best loss: -0.0]
 best:
-{&#39;cluster_selection_epsilon&#39;: 0.6424242424242425, &#39;cluster_selection_method&#39;: &#39;eom&#39;, &#39;metric&#39;: &#39;euclidean&#39;, &#39;min_cluster_size&#39;: 963, &#39;n_components&#39;: 27, &#39;n_neighbors&#39;: 77}
+{&#39;cluster_selection_epsilon&#39;: 0.26464646464646463, &#39;cluster_selection_method&#39;: &#39;eom&#39;, &#39;metric&#39;: &#39;manhattan&#39;, &#39;min_cluster_size&#39;: 790, &#39;n_components&#39;: 5, &#39;n_neighbors&#39;: 41}
 --------------------
 --------------------
 Finished training!
